@@ -62,3 +62,10 @@ header {
 .image:hover {
   cursor: pointer;
 }
+
+.end-message {
+  width: auto;
+  margin: 5% auto;
+  text-align: center;
+  padding: 2%;
+}

@@ -23,10 +23,14 @@ function CreateImage(name, filePath, idText) {
   this.idText = idText;
   this.numDisplays = 0;
   this.numClicks = 0;
+  this.percentClicks;
   allImages.push(this);
 
   // method to track number of times image displayed
   this.calcNumDisplay = function() {
+    if(displayHappened) {
+      this.numDisplays ++;
+    }
   };
 
   // method to track number of times image is clicked
@@ -37,7 +41,9 @@ function CreateImage(name, filePath, idText) {
   };
 
   this.calcPercentClicks = function() {
-
+    if (this.numDisplays > 0) {
+      this.percentClicks = (this.numClicks / this.numDisplays) * 100;
+    }
   };
 }
 
@@ -85,11 +91,14 @@ var imgEl1 = document.getElementById('image-1');
 var imgEl2 = document.getElementById('image-2');
 var imgEl3 = document.getElementById('image-3');
 
+// create image description paragraph variables
 var imgPara1 = document.getElementById('image-1-para');
 var imgPara2 = document.getElementById('image-2-para');
 var imgPara3 = document.getElementById('image-3-para');
 
 // function to select three random images and display using DOM manipulation
+var displayHappened = false;
+
 function randomImages() {
 
   generateRandomNumbers();
@@ -114,26 +123,61 @@ function randomImages() {
   prevRandNum1 = randNum1;
   prevRandNum2 = randNum2;
   prevRandNum3 = randNum3;
+
+  //run display count method for images that are displayed
+  displayHappened = true;
+  allImages[randNum1].calcNumDisplay();
+  allImages[randNum2].calcNumDisplay();
+  allImages[randNum3].calcNumDisplay();
 }
 randomImages();
 
-var clickHappened = false; // Boolean to switch if image is clicked
+var clickHappened = false; // use Boolean to switch if image is clicked
 
-// event listeners to run 'randomImages' function
-imgEl1.addEventListener('click', function() {
+// event listeners to run 'randomImages' and click counting functions
+function image1Click() {
   clickHappened = true;
   allImages[randNum1].calcNumClicks();
   randomImages();
-});
-
-imgEl2.addEventListener('click', function() {
+  numTotalClick ++;
+  if(numTotalClick > 24) {
+    imgEl1.removeEventListener('click', image1Click);
+    alertEndMessage();
+  }
+  console.log('click count: ' + numTotalClick);
+}
+function image2Click() {
   clickHappened = true;
   allImages[randNum2].calcNumClicks();
   randomImages();
-});
-
-imgEl3.addEventListener('click', function() {
+  numTotalClick ++;
+  if(numTotalClick > 24) {
+    imgEl2.removeEventListener('click', image2Click);
+    alertEndMessage();
+  }
+  console.log('click count: ' + numTotalClick);
+}
+function image3Click() {
   clickHappened = true;
   allImages[randNum3].calcNumClicks();
   randomImages();
-});
+  numTotalClick ++;
+  if(numTotalClick > 24) {
+    imgEl3.removeEventListener('click', image3Click);
+    alertEndMessage();
+  }
+  console.log('click count: ' + numTotalClick);
+}
+
+imgEl1.addEventListener('click', image1Click);
+imgEl2.addEventListener('click', image2Click);
+imgEl3.addEventListener('click', image3Click);
+
+// alert for user that voting process has ended
+var endMessageEl = document.createElement('h3');
+var endMessage = document.createTextNode('The voting process has ended! Thank you for your input!');
+
+function alertEndMessage() {
+  endMessageEl.appendChild(endMessage);
+  document.getElementById('end-message').appendChild(endMessageEl);
+}
