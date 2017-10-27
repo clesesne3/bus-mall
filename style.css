@@ -1,3 +1,29 @@
 body {
-  
+
+}
+
+header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 5%;
+}
+
+.image-row {
+  width: 100%;
+  display: inline;
+  margin: 0 auto;
+  text-align: center;
+}
+.image-div {
+  width: auto;
+  margin: 0 3%;
+  display: inline;
+  text-align: center;
+}
+.image {
+  width: 250px;
+  height: 250px;
+  display: inline;
+  text-align: center;
+  margin: 0 auto;
 }
