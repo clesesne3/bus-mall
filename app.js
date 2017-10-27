@@ -21,9 +21,24 @@ function CreateImage(name, filePath, idText) {
   this.name = name;
   this.filePath = filePath;
   this.idText = idText;
-  this.numDisplay = 0;
-  this.numClick = 0;
+  this.numDisplays = 0;
+  this.numClicks = 0;
   allImages.push(this);
+
+  // method to track number of times image displayed
+  this.calcNumDisplay = function() {
+  };
+
+  // method to track number of times image is clicked
+  this.calcNumClicks = function() {
+    if(clickHappened) {
+      this.numClicks ++;
+    }
+  };
+
+  this.calcPercentClicks = function() {
+
+  };
 }
 
 // function to create image instances from constructor
@@ -35,65 +50,90 @@ function makeAllImages() {
 makeAllImages();
 
 // generate three random, unique numbers
-var randNumArr;
-var prevRandNum1;
-var prevRandNum2;
-var prevRandNum3;
-var randNum1 = Math.floor(Math.random() * filePathArr.length);
-var randNum2 = Math.floor(Math.random() * filePathArr.length);
-var randNum3 = Math.floor(Math.random() * filePathArr.length);
+var prevRandNum1; //
+var prevRandNum2; // variables to store immediate previously generated random numbers
+var prevRandNum3; //
+
+var randNum1; //
+var randNum2; // variables to store current randomly generated numbers
+var randNum3; //
 
 function generateRandomNumbers(){
+
   randNum1 = Math.floor(Math.random() * filePathArr.length);
-  while (randNum1 === prevRandNum1 || prevRandNum2 || prevRandNum3) {
+  while (randNum1 === prevRandNum1 || randNum1 === prevRandNum2 || randNum1 === prevRandNum3) {
     randNum1 = Math.floor(Math.random() * filePathArr.length);
   }
-  console.log(randNum1);
 
   randNum2 = Math.floor(Math.random() * filePathArr.length);
   while (randNum2 === randNum1 || randNum2 === prevRandNum1 || randNum2 === prevRandNum2 || randNum2 === prevRandNum3) {
     randNum2 = Math.floor(Math.random() * filePathArr.length);
   }
-  console.log(randNum2);
 
   randNum3 = Math.floor(Math.random() * filePathArr.length);
   while (randNum3 === randNum2 || randNum3 === randNum1 || randNum3 === prevRandNum1 || randNum3 === prevRandNum2 || randNum3 === prevRandNum3) {
     randNum3 = Math.floor(Math.random() * filePathArr.length);
   }
-  console.log(randNum3);
-  randNumArr = [randNum1, randNum2, randNum3];
-  console.log(randNumArr);
-}
 
-// store previously generated random numbers to compare against current generated random numbers
+  console.log('randNum1: ' + randNum1);
+  console.log('randNum2: ' + randNum2);
+  console.log('randNum3: ' + randNum3);
+}
 
 // create image element variables
 var imgEl1 = document.getElementById('image-1');
 var imgEl2 = document.getElementById('image-2');
 var imgEl3 = document.getElementById('image-3');
 
+var imgPara1 = document.getElementById('image-1-para');
+var imgPara2 = document.getElementById('image-2-para');
+var imgPara3 = document.getElementById('image-3-para');
+
 // function to select three random images and display using DOM manipulation
 function randomImages() {
+
   generateRandomNumbers();
+
+  var randomId1 = allImages[randNum1].idText; //
+  var randomId2 = allImages[randNum2].idText; // access id attribute for randomly selected image
+  var randomId3 = allImages[randNum3].idText; //
+
+  imgEl1.id = randomId1;
+  imgEl1.src = allImages[randNum1].filePath;
+  imgPara1.textContent = allImages[randNum1].name;
+
+  imgEl2.id = randomId2;
+  imgEl2.src = allImages[randNum2].filePath;
+  imgPara2.textContent = allImages[randNum2].name;
+
+  imgEl3.id = randomId3;
+  imgEl3.src = allImages[randNum3].filePath;
+  imgPara3.textContent = allImages[randNum3].name;
+
+  // store previously generated random numbers to compare against current generated random numbers
   prevRandNum1 = randNum1;
   prevRandNum2 = randNum2;
   prevRandNum3 = randNum3;
-
-  var randomId1 = allImages[randNumArr[0]].idText; // access id attribute for randomly selected image
-  var randomId2 = allImages[randNumArr[1]].idText;
-  var randomId3 = allImages[randNumArr[2]].idText;
-  imgEl1.id = randomId1;
-  imgEl1.src = allImages[randNumArr[0]].filePath;
-
-  imgEl2.id = randomId2;
-  imgEl2.src = allImages[randNumArr[1]].filePath;
-
-  imgEl3.id = randomId3;
-  imgEl3.src = allImages[randNumArr[2]].filePath;
 }
 randomImages();
 
-// event listeners to run "randomImage" function
-imgEl1.addEventListener('click', randomImages);
-imgEl2.addEventListener('click', randomImages);
-imgEl3.addEventListener('click', randomImages);
+var clickHappened = false; // Boolean to switch if image is clicked
+
+// event listeners to run 'randomImages' function
+imgEl1.addEventListener('click', function() {
+  clickHappened = true;
+  allImages[randNum1].calcNumClicks();
+  randomImages();
+});
+
+imgEl2.addEventListener('click', function() {
+  clickHappened = true;
+  allImages[randNum2].calcNumClicks();
+  randomImages();
+});
+
+imgEl3.addEventListener('click', function() {
+  clickHappened = true;
+  allImages[randNum3].calcNumClicks();
+  randomImages();
+});

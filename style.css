@@ -6,6 +6,7 @@ header {
   width: 100%;
   text-align: center;
   margin-bottom: 5%;
+  font-family: 'Rock Salt', cursive;
 }
 
 .image-row {
@@ -16,7 +17,7 @@ header {
 }
 .image-div {
   width: auto;
-  margin: 0 3%;
+  margin: 0 7%;
   display: inline;
   text-align: center;
 }
@@ -26,4 +27,38 @@ header {
   display: inline;
   text-align: center;
   margin: 0 auto;
+  border: 3px solid SkyBlue;
+  border-radius: 3%;
+}
+
+.paragraph-row {
+  text-align: left;
+}
+.image-para {
+  width: 20%;
+  margin: 0;
+  display: inline;
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: bold;
+  font-family: ;
+}
+#image-1-para {
+  position: sticky;
+  left: 190px;
+  text-align: center;
+}
+#image-2-para {
+  position: sticky;
+  left: 610px;
+  text-align: center;
+}
+#image-3-para {
+  position: sticky;
+  left: 1040px;
+  text-align: center;
+}
+
+.image:hover {
+  cursor: pointer;
 }
