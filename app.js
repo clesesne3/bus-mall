@@ -144,6 +144,8 @@ function image1Click() {
   clicksRemaining();
   if(numTotalClick > 24) {
     imgEl1.removeEventListener('click', image1Click);
+    imgEl2.removeEventListener('click', image2Click);
+    imgEl3.removeEventListener('click', image3Click);
     alertEndMessage();
   }
   console.log('click count: ' + numTotalClick);
@@ -155,7 +157,9 @@ function image2Click() {
   numTotalClick ++;
   clicksRemaining();
   if(numTotalClick > 24) {
+    imgEl1.removeEventListener('click', image1Click);
     imgEl2.removeEventListener('click', image2Click);
+    imgEl3.removeEventListener('click', image3Click);
     alertEndMessage();
   }
   console.log('click count: ' + numTotalClick);
@@ -167,6 +171,8 @@ function image3Click() {
   numTotalClick ++;
   clicksRemaining();
   if(numTotalClick > 24) {
+    imgEl1.removeEventListener('click', image1Click);
+    imgEl2.removeEventListener('click', image2Click);
     imgEl3.removeEventListener('click', image3Click);
     alertEndMessage();
   }
