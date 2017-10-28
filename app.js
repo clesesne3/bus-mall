@@ -176,7 +176,7 @@ imgEl3.addEventListener('click', image3Click);
 // function to display message that voting process has ended and display results
 function alertEndMessage() {
   var endMessageEl = document.createElement('h3');
-  var endMessage = document.createTextNode('Voting is complete! Thank you for your input!');
+  var endMessage = document.createTextNode('Voting completed! Thank you for your input!');
   endMessageEl.appendChild(endMessage);
   document.getElementById('end-message').appendChild(endMessageEl);
   displayResults();
