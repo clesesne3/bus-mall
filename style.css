@@ -1,0 +1,112 @@
+body {
+  background: linear-gradient(to bottom, rgba(179,220,237,1) 0%,rgba(41,184,229,1) 50%,rgba(188,224,238,1) 100%);
+}
+
+header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10%;
+  font-family: 'Saira Extra Condensed';
+}
+span {
+  font-family: 'Rock Salt', cursive;
+  margin-right: 1%;
+}
+.sub-header {
+  margin: 0;
+}
+#sub-header-1 {
+  font-family: 'Saira Extra Condensed';
+}
+#sub-header-2 {
+  font-family: 'Roboto';
+  font-size: 1em;
+}
+#sub-header-3 {
+  font-size: 1.1em;
+  margin-top: 1%;
+  font-family: 'Saira Extra Condensed';
+}
+
+.image-row {
+  width: 100%;
+  display: inline;
+  margin: 0 auto;
+  text-align: center;
+}
+.image-div {
+  width: auto;
+  margin: 0 7%;
+  display: inline;
+  text-align: center;
+}
+.image {
+  width: 250px;
+  height: 250px;
+  display: inline;
+  text-align: center;
+  margin: 0 auto;
+  border: 3px solid Black;
+  border-radius: 3%;
+}
+
+.paragraph-row {
+  text-align: left;
+}
+.image-para {
+  width: 20%;
+  margin: 0;
+  display: inline;
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: bold;
+  font-family: 'Roboto';
+}
+#image-1-para {
+  position: sticky;
+  left: 190px;
+  text-align: center;
+}
+#image-2-para {
+  position: sticky;
+  left: 650px;
+  text-align: center;
+}
+#image-3-para {
+  position: sticky;
+  left: 1120px;
+  text-align: center;
+}
+
+.image:hover {
+  cursor: pointer;
+}
+
+.end-message {
+  width: auto;
+  margin: 1% auto;
+  text-align: center;
+  padding: 2%;
+  font-family: 'Saira Extra Condensed';
+  font-size: 1.3em;
+}
+
+.result-list {
+  width: 26%;
+  margin: 0 auto;
+  text-align: center;
+}
+.result-list h2 {
+  margin: 0 auto;
+  font-family: 'Roboto';
+  text-align: center;
+  border: 3px solid Black;
+  border-radius: 5px;
+  width: 50%;
+}
+#result-list {
+  text-align: left;
+  font-family: 'Roboto';
+  font-weight: bold;
+  padding-left: 25%;
+}
