@@ -24,7 +24,8 @@ span {
 }
 #sub-header-3 {
   font-size: 1.1em;
-  margin-top: 5%;
+  margin-top: 1%;
+  font-family: 'Saira Extra Condensed';
 }
 
 .image-row {
@@ -83,9 +84,11 @@ span {
 
 .end-message {
   width: auto;
-  margin: 5% auto;
+  margin: 1% auto;
   text-align: center;
   padding: 2%;
+  font-family: 'Saira Extra Condensed';
+  font-size: 1.3em;
 }
 
 .result-list {
