@@ -141,6 +141,7 @@ function image1Click() {
   allImages[randNum1].calcNumClicks();
   randomImages();
   numTotalClick ++;
+  clicksRemaining();
   if(numTotalClick > 24) {
     imgEl1.removeEventListener('click', image1Click);
     alertEndMessage();
@@ -152,6 +153,7 @@ function image2Click() {
   allImages[randNum2].calcNumClicks();
   randomImages();
   numTotalClick ++;
+  clicksRemaining();
   if(numTotalClick > 24) {
     imgEl2.removeEventListener('click', image2Click);
     alertEndMessage();
@@ -163,6 +165,7 @@ function image3Click() {
   allImages[randNum3].calcNumClicks();
   randomImages();
   numTotalClick ++;
+  clicksRemaining();
   if(numTotalClick > 24) {
     imgEl3.removeEventListener('click', image3Click);
     alertEndMessage();
@@ -198,4 +201,10 @@ function displayResults() {
   }
   document.getElementById('result-list-div').appendChild(resultList);
 }
-//displayResults();
+
+// calculates and displays remaining number of selections remaining
+function clicksRemaining() {
+  var clicksLeft = 25 - numTotalClick;
+  var clicksLeftEl = document.getElementById('sub-header-3');
+  clicksLeftEl.textContent = 'Selections remaining: ' + clicksLeft;
+}
