@@ -50,12 +50,12 @@ header {
 }
 #image-2-para {
   position: sticky;
-  left: 610px;
+  left: 650px;
   text-align: center;
 }
 #image-3-para {
   position: sticky;
-  left: 1040px;
+  left: 1120px;
   text-align: center;
 }
 
@@ -68,4 +68,16 @@ header {
   margin: 5% auto;
   text-align: center;
   padding: 2%;
+}
+
+.result-list {
+  width: 25%;
+  margin: 0 auto;
+  text-align: center;
+}
+.result-list h2 {
+  text-decoration: underline;
+}
+#result-list {
+  text-align: left;
 }

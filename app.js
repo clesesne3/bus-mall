@@ -1,8 +1,8 @@
 'use strict';
 
 // arrays to store image names, filepaths, and text ids
-var imageNameArr = ['Bag', 'Banana', 'Bathroom', 'Boots', 'Breakfast', 'Bubblegum',
-  'Chair', 'Cthulhu', 'Dog Duck', 'Dragon', 'Pen', 'Pet Sweep', 'Scissors', 'Shark', 'Sweep', 'Tauntaun', 'Unicorn', 'USB', 'Water Can', 'Wine Glass'];
+var imageNameArr = ['R2-D2 Bag', 'Banana Slicer', 'I-Roll', 'Boot-Flops', 'Ultimate Breakfast', 'Bubblegum',
+  'Chair', 'Cthulhu', 'Dog Duck', 'Dragon Meat', 'U-Pen-sils', 'Pet Sweep', 'Scissors', 'Shark Sleeper', 'Baby Sweep', 'Tauntaun', 'Unicorn Meat', 'USB', 'Water Can', 'Wine Glass'];
 
 var filePathArr = ['img/bag.jpg', 'img/banana.jpg', 'img/bathroom.jpg', 'img/boots.jpg',
   'img/breakfast.jpg', 'img/bubblegum.jpg', 'img/chair.jpg', 'img/cthulhu.jpg', 'img/dog-duck.jpg', 'img/dragon.jpg', 'img/pen.jpg', 'img/pet-sweep.jpg', 'img/scissors.jpg', 'img/shark.jpg', 'img/sweep.png', 'img/tauntaun.jpg', 'img/unicorn.jpg', 'img/usb.gif', 'img/water-can.jpg', 'img/wine-glass.jpg'];
@@ -15,6 +15,9 @@ var allImages = [];
 
 // counter variable to track total clicks
 var numTotalClick = 0;
+
+var displayHappened = false; // use Boolean to switch if image is displayed
+var clickHappened = false; // use Boolean to switch if image is clicked
 
 // constructor function for image object
 function CreateImage(name, filePath, idText) {
@@ -44,6 +47,7 @@ function CreateImage(name, filePath, idText) {
     if (this.numDisplays > 0) {
       this.percentClicks = (this.numClicks / this.numDisplays) * 100;
     }
+    return this.percentClicks.toFixed(1); // rounds percentage to tenths place
   };
 }
 
@@ -55,7 +59,6 @@ function makeAllImages() {
 }
 makeAllImages();
 
-// generate three random, unique numbers
 var prevRandNum1; //
 var prevRandNum2; // variables to store immediate previously generated random numbers
 var prevRandNum3; //
@@ -64,6 +67,7 @@ var randNum1; //
 var randNum2; // variables to store current randomly generated numbers
 var randNum3; //
 
+// generate three random, unique numbers
 function generateRandomNumbers(){
 
   randNum1 = Math.floor(Math.random() * filePathArr.length);
@@ -86,19 +90,17 @@ function generateRandomNumbers(){
   console.log('randNum3: ' + randNum3);
 }
 
-// create image element variables
+// create image element variables to insert into DOM
 var imgEl1 = document.getElementById('image-1');
 var imgEl2 = document.getElementById('image-2');
 var imgEl3 = document.getElementById('image-3');
 
-// create image description paragraph variables
+// create image description paragraph variables to insert into DOM
 var imgPara1 = document.getElementById('image-1-para');
 var imgPara2 = document.getElementById('image-2-para');
 var imgPara3 = document.getElementById('image-3-para');
 
 // function to select three random images and display using DOM manipulation
-var displayHappened = false;
-
 function randomImages() {
 
   generateRandomNumbers();
@@ -132,9 +134,7 @@ function randomImages() {
 }
 randomImages();
 
-var clickHappened = false; // use Boolean to switch if image is clicked
-
-// event listeners to run 'randomImages' and click counting functions
+// event listeners to run 'randomImages' and click-counting functions
 function image1Click() {
   clickHappened = true;
   allImages[randNum1].calcNumClicks();
@@ -173,11 +173,28 @@ imgEl1.addEventListener('click', image1Click);
 imgEl2.addEventListener('click', image2Click);
 imgEl3.addEventListener('click', image3Click);
 
-// alert for user that voting process has ended
-var endMessageEl = document.createElement('h3');
-var endMessage = document.createTextNode('The voting process has ended! Thank you for your input!');
-
+// function to display message for user that voting process has ended
 function alertEndMessage() {
+  var endMessageEl = document.createElement('h3');
+  var endMessage = document.createTextNode('The voting process has ended! Thank you for your input!');
   endMessageEl.appendChild(endMessage);
   document.getElementById('end-message').appendChild(endMessageEl);
+  displayResults();
+}
+
+// function to generate results in list form
+function displayResults() {
+  var resultHeaderElement = document.createElement('h2');
+  var resultHeader = document.createTextNode('Survey Results');
+  resultHeaderElement.appendChild(resultHeader);
+  document.getElementById('result-list-div').appendChild(resultHeaderElement);
+
+  var resultList = document.createElement('ul');
+  resultList.id = 'result-list';
+  for (var j = 0; j < allImages.length; j++) {
+    var resultListElement = document.createElement('li');
+    resultListElement.textContent = allImages[j].numClicks + ' votes for the ' + allImages[j].name;
+    resultList.appendChild(resultListElement);
+  }
+  document.getElementById('result-list-div').appendChild(resultList);
 }
