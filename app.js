@@ -1,6 +1,6 @@
 'use strict';
 
-// arrays to store image names, filepaths, and text ids
+// arrays to store image names, filepaths, and text IDs
 var imageNameArr = ['R2-D2 Bag', 'Banana Slicer', 'I-Roll', 'Boot-Flops', 'Ultimate Breakfast', 'Bubblegum',
   'Chair', 'Cthulhu', 'Dog Duck', 'Dragon Meat', 'U-Pen-sils', 'Pet Sweep', 'Scissors', 'Shark Sleeper', 'Baby Sweep', 'Tauntaun', 'Unicorn Meat', 'USB', 'Water Can', 'Wine Glass'];
 
@@ -13,20 +13,20 @@ var textIdArr = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum',
 // array for all created image objects
 var allImages = [];
 
-// counter variable to track total clicks
+// variable to track total clicks
 var numTotalClick = 0;
 
-var displayHappened = false; // Boolean variable to switch if image is displayed
-var clickHappened = false; // Boolean variable to switch if image is clicked
+var displayHappened = false; // Boolean variable that switches if image is displayed
+var clickHappened = false; // Boolean variable that switches if image is clicked
 
 // **CONSTRUCTOR FUNCTION** for image object
 function CreateImage(name, filePath, idText) {
   this.name = name;
   this.filePath = filePath;
   this.idText = idText;
-  this.numDisplays = 0;
-  this.numClicks = 0;
-  this.percentClicks;
+  this.numDisplays = 0; // variable to increment number of displays for an image
+  this.numClicks = 0; // variable to increment number of clicks for an image
+  this.percentClicks; // variable to store click percentage for an image
   allImages.push(this);
 
   // method to track number of times an image is displayed
@@ -52,7 +52,7 @@ function CreateImage(name, filePath, idText) {
   };
 }
 
-// function to create each image instance from constructor
+// function to create all image instances from constructor
 function makeAllImages() {
   for (var i = 0; i < imageNameArr.length; i++) {
     new CreateImage(imageNameArr[i], filePathArr[i], textIdArr[i]);
@@ -61,11 +61,11 @@ function makeAllImages() {
 makeAllImages();
 
 var prevRandNum1; //
-var prevRandNum2; // variables to store immediately previous generated random numbers
+var prevRandNum2; // variables to store immediately previous set of generated random numbers
 var prevRandNum3; //
 
 var randNum1; //
-var randNum2; // variables to store current randomly generated numbers
+var randNum2; // variables to store current set of generated random numbers
 var randNum3; //
 
 // function to generate three random unique numbers
@@ -107,7 +107,7 @@ function randomImages() {
   generateRandomNumbers();
 
   var randomId1 = allImages[randNum1].idText; //
-  var randomId2 = allImages[randNum2].idText; // access id attribute for randomly selected image
+  var randomId2 = allImages[randNum2].idText; // access id attribute values for randomly selected images
   var randomId3 = allImages[randNum3].idText; //
 
   imgEl1.id = randomId1;
@@ -122,7 +122,7 @@ function randomImages() {
   imgEl3.src = allImages[randNum3].filePath;
   imgPara3.textContent = allImages[randNum3].name;
 
-  // store previously generated random numbers to compare against current generated random numbers
+  // store previous random numbers to compare against current random numbers
   prevRandNum1 = randNum1;
   prevRandNum2 = randNum2;
   prevRandNum3 = randNum3;
@@ -173,10 +173,10 @@ imgEl1.addEventListener('click', image1Click);
 imgEl2.addEventListener('click', image2Click);
 imgEl3.addEventListener('click', image3Click);
 
-// function to display message for user that voting process has ended and display results
+// function to display message that voting process has ended and display results
 function alertEndMessage() {
   var endMessageEl = document.createElement('h3');
-  var endMessage = document.createTextNode('The voting process has ended! Thank you for your input!');
+  var endMessage = document.createTextNode('Voting is complete! Thank you for your input!');
   endMessageEl.appendChild(endMessage);
   document.getElementById('end-message').appendChild(endMessageEl);
   displayResults();
@@ -198,3 +198,4 @@ function displayResults() {
   }
   document.getElementById('result-list-div').appendChild(resultList);
 }
+//displayResults();
