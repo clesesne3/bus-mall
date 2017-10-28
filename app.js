@@ -10,16 +10,16 @@ var filePathArr = ['img/bag.jpg', 'img/banana.jpg', 'img/bathroom.jpg', 'img/boo
 var textIdArr = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum',
   'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'];
 
-// array for created image objects
+// array for all created image objects
 var allImages = [];
 
 // counter variable to track total clicks
 var numTotalClick = 0;
 
-var displayHappened = false; // use Boolean to switch if image is displayed
-var clickHappened = false; // use Boolean to switch if image is clicked
+var displayHappened = false; // Boolean variable to switch if image is displayed
+var clickHappened = false; // Boolean variable to switch if image is clicked
 
-// constructor function for image object
+// **CONSTRUCTOR FUNCTION** for image object
 function CreateImage(name, filePath, idText) {
   this.name = name;
   this.filePath = filePath;
@@ -29,20 +29,21 @@ function CreateImage(name, filePath, idText) {
   this.percentClicks;
   allImages.push(this);
 
-  // method to track number of times image displayed
+  // method to track number of times an image is displayed
   this.calcNumDisplay = function() {
     if(displayHappened) {
       this.numDisplays ++;
     }
   };
 
-  // method to track number of times image is clicked
+  // method to track number of times an image is clicked
   this.calcNumClicks = function() {
     if(clickHappened) {
       this.numClicks ++;
     }
   };
 
+  // method to calculate the percentage of total clicks
   this.calcPercentClicks = function() {
     if (this.numDisplays > 0) {
       this.percentClicks = (this.numClicks / this.numDisplays) * 100;
@@ -51,7 +52,7 @@ function CreateImage(name, filePath, idText) {
   };
 }
 
-// function to create image instances from constructor
+// function to create each image instance from constructor
 function makeAllImages() {
   for (var i = 0; i < imageNameArr.length; i++) {
     new CreateImage(imageNameArr[i], filePathArr[i], textIdArr[i]);
@@ -60,14 +61,14 @@ function makeAllImages() {
 makeAllImages();
 
 var prevRandNum1; //
-var prevRandNum2; // variables to store immediate previously generated random numbers
+var prevRandNum2; // variables to store immediately previous generated random numbers
 var prevRandNum3; //
 
 var randNum1; //
 var randNum2; // variables to store current randomly generated numbers
 var randNum3; //
 
-// generate three random, unique numbers
+// function to generate three random unique numbers
 function generateRandomNumbers(){
 
   randNum1 = Math.floor(Math.random() * filePathArr.length);
@@ -90,12 +91,12 @@ function generateRandomNumbers(){
   console.log('randNum3: ' + randNum3);
 }
 
-// create image element variables to insert into DOM
+// create image elements to insert into DOM
 var imgEl1 = document.getElementById('image-1');
 var imgEl2 = document.getElementById('image-2');
 var imgEl3 = document.getElementById('image-3');
 
-// create image description paragraph variables to insert into DOM
+// create image description paragraph elements to insert into DOM
 var imgPara1 = document.getElementById('image-1-para');
 var imgPara2 = document.getElementById('image-2-para');
 var imgPara3 = document.getElementById('image-3-para');
@@ -168,12 +169,11 @@ function image3Click() {
   }
   console.log('click count: ' + numTotalClick);
 }
-
 imgEl1.addEventListener('click', image1Click);
 imgEl2.addEventListener('click', image2Click);
 imgEl3.addEventListener('click', image3Click);
 
-// function to display message for user that voting process has ended
+// function to display message for user that voting process has ended and display results
 function alertEndMessage() {
   var endMessageEl = document.createElement('h3');
   var endMessage = document.createTextNode('The voting process has ended! Thank you for your input!');
