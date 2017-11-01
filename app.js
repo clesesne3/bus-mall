@@ -188,29 +188,101 @@ function alertEndMessage() {
   var endMessage = document.createTextNode('Thank you for your input! Check out the results below:');
   endMessageEl.appendChild(endMessage);
   document.getElementById('end-message').appendChild(endMessageEl);
-  displayResults();
+  displayResultsChart();
 }
 
 // function to generate results in list form
-function displayResults() {
-  var resultHeaderElement = document.createElement('h2');
-  var resultHeader = document.createTextNode('Survey Results');
-  resultHeaderElement.appendChild(resultHeader);
-  document.getElementById('result-list-div').appendChild(resultHeaderElement);
-
-  var resultList = document.createElement('ul');
-  resultList.id = 'result-list';
-  for (var j = 0; j < allImages.length; j++) {
-    var resultListElement = document.createElement('li');
-    resultListElement.textContent = allImages[j].numClicks + ' votes for the ' + allImages[j].name;
-    resultList.appendChild(resultListElement);
-  }
-  document.getElementById('result-list-div').appendChild(resultList);
-}
+// function displayResults() {
+//   var resultHeaderElement = document.createElement('h2');
+//   var resultHeader = document.createTextNode('Survey Results');
+//   resultHeaderElement.appendChild(resultHeader);
+//   document.getElementById('result-list-div').appendChild(resultHeaderElement);
+//
+//   var resultList = document.createElement('ul');
+//   resultList.id = 'result-list';
+//   for (var j = 0; j < allImages.length; j++) {
+//     var resultListElement = document.createElement('li');
+//     resultListElement.textContent = allImages[j].numClicks + ' votes for the ' + allImages[j].name;
+//     resultList.appendChild(resultListElement);
+//   }
+//   document.getElementById('result-list-div').appendChild(resultList);
+// }
 
 // calculates and displays remaining number of selections remaining
 function clicksRemaining() {
   var clicksLeft = 25 - numTotalClick;
   var clicksLeftEl = document.getElementById('sub-header-3');
   clicksLeftEl.textContent = 'Selections remaining: ' + clicksLeft;
+}
+
+// function to display results with a chart
+function displayResultsChart () {
+  var chartResults = document.getElementById('bar-chart').getContext('2d');
+
+  var voteResultsArr = [];
+  var colorResultsArr = ['red', 'green', 'yellow', 'blue', 'orange', 'purple',
+    'cyan', 'magenta', 'lime', 'pink', 'teal', 'lavender', 'brown', 'beige', 'maroon', 'mint', 'olive', 'coral', 'navy', 'grey', 'white', 'black'];
+  var nameResultsArr = [];
+  for (var k = 0; k < allImages.length; k++) {
+    if (allImages[k].numClicks > 0) {
+      voteResultsArr.push(allImages[k].numClicks);
+      nameResultsArr.push(allImages[k].name);
+    }
+  }
+  var data = {
+    datasets: [{
+      data: voteResultsArr,
+      backgroundColor: colorResultsArr,
+      borderColor: '#000',
+      borderWidth: 2,
+      label: 'Votes'
+    }],
+    labels: nameResultsArr
+  };
+
+  var options = {
+    title: {display: true, text: 'Survey Results: Product Preference by Vote Count', position: 'top', fontSize: 20, fontFamily: 'Roboto', fontColor: '#000', fontStyle: 'bold'},
+    legend: {display: false},
+    scales: {
+      xAxes: [{
+        type: 'category',
+        labels: nameResultsArr,
+        ticks: {
+          fontColor: '#000',
+          fontStyle: 'bold'
+        },
+        scaleLabel: {
+          display: true,
+          labelString: 'Product',
+          fontSize: 14,
+          fontColor: '#000',
+          fontStyle: 'bold'
+        },
+        gridlines: {
+          offsetGridLines: false
+        }
+      }],
+      yAxes: [{
+        scaleLabel: {
+          display: true,
+          labelString: '# of Votes',
+          fontSize: 14,
+          fontColor: '#000',
+          fontStyle: 'bold'
+        },
+        ticks: {
+          fontColor: '#000',
+          suggestedMin: 0
+        }
+      }]
+    },
+    responsive: false,
+    maintainAspectRatio: false
+  };
+
+  new Chart (chartResults, {
+    type: 'bar',
+    data: data,
+    options: options
+  });
 }

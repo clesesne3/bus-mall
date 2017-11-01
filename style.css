@@ -110,3 +110,9 @@ span {
   font-weight: bold;
   padding-left: 25%;
 }
+#bar-chart {
+  width: 1200px;
+  height: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
