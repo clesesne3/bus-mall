@@ -191,23 +191,6 @@ function alertEndMessage() {
   displayResultsChart();
 }
 
-// function to generate results in list form
-// function displayResults() {
-//   var resultHeaderElement = document.createElement('h2');
-//   var resultHeader = document.createTextNode('Survey Results');
-//   resultHeaderElement.appendChild(resultHeader);
-//   document.getElementById('result-list-div').appendChild(resultHeaderElement);
-//
-//   var resultList = document.createElement('ul');
-//   resultList.id = 'result-list';
-//   for (var j = 0; j < allImages.length; j++) {
-//     var resultListElement = document.createElement('li');
-//     resultListElement.textContent = allImages[j].numClicks + ' votes for the ' + allImages[j].name;
-//     resultList.appendChild(resultListElement);
-//   }
-//   document.getElementById('result-list-div').appendChild(resultList);
-// }
-
 // calculates and displays remaining number of selections remaining
 function clicksRemaining() {
   var clicksLeft = 25 - numTotalClick;
@@ -234,7 +217,7 @@ function displayResultsChart () {
       data: voteResultsArr,
       backgroundColor: colorResultsArr,
       borderColor: '#000',
-      borderWidth: 2,
+      borderWidth: 1,
       label: 'Votes'
     }],
     labels: nameResultsArr
