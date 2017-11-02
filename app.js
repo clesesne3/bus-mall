@@ -146,6 +146,8 @@ function image1Click() {
     imgEl1.removeEventListener('click', image1Click);
     imgEl2.removeEventListener('click', image2Click);
     imgEl3.removeEventListener('click', image3Click);
+    document.getElementById('image-row').style.display = 'none';
+    document.getElementById('paragraph-row').style.display = 'none';
     alertEndMessage();
   }
   console.log('click count: ' + numTotalClick);
@@ -160,6 +162,8 @@ function image2Click() {
     imgEl1.removeEventListener('click', image1Click);
     imgEl2.removeEventListener('click', image2Click);
     imgEl3.removeEventListener('click', image3Click);
+    document.getElementById('image-row').style.display = 'none';
+    document.getElementById('paragraph-row').style.display = 'none';
     alertEndMessage();
   }
   console.log('click count: ' + numTotalClick);
@@ -174,6 +178,8 @@ function image3Click() {
     imgEl1.removeEventListener('click', image1Click);
     imgEl2.removeEventListener('click', image2Click);
     imgEl3.removeEventListener('click', image3Click);
+    document.getElementById('image-row').style.display = 'none';
+    document.getElementById('paragraph-row').style.display = 'none';
     alertEndMessage();
   }
   console.log('click count: ' + numTotalClick);
@@ -224,7 +230,7 @@ function displayResultsChart () {
   };
 
   var options = {
-    title: {display: true, text: 'Survey Results: Product Preference by Vote Count', position: 'top', fontSize: 20, fontFamily: 'Roboto', fontColor: '#000', fontStyle: 'bold'},
+    title: {display: true, text: 'Bus-Mall Survey: Product Preference by Vote Count', position: 'top', fontSize: 20, fontFamily: 'Roboto', fontColor: '#000', fontStyle: 'bold'},
     legend: {display: false},
     scales: {
       xAxes: [{
@@ -255,7 +261,8 @@ function displayResultsChart () {
         },
         ticks: {
           fontColor: '#000',
-          suggestedMin: 0
+          suggestedMin: 0,
+          stepValue: 1
         }
       }]
     },
