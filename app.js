@@ -20,10 +20,9 @@ var displayHappened = false; // Boolean variable that switches if image is displ
 var clickHappened = false; // Boolean variable that switches if image is clicked
 
 // **CONSTRUCTOR FUNCTION** for image object
-function CreateImage(name, filePath, idText) {
+function CreateImage(name, filePath) {
   this.name = name;
   this.filePath = filePath;
-  this.idText = idText;
   this.numDisplays = 0; // variable to increment number of displays for an image
   this.numClicks = 0; // variable to increment number of clicks for an image
   this.percentClicks; // variable to store click percentage for an image
@@ -55,7 +54,7 @@ function CreateImage(name, filePath, idText) {
 // function to create all image instances from constructor
 function makeAllImages() {
   for (var i = 0; i < imageNameArr.length; i++) {
-    new CreateImage(imageNameArr[i], filePathArr[i], textIdArr[i]);
+    new CreateImage(imageNameArr[i], filePathArr[i]);
   }
 }
 makeAllImages();
@@ -105,20 +104,10 @@ var imgPara3 = document.getElementById('image-3-para');
 function randomImages() {
 
   generateRandomNumbers();
-
-  var randomId1 = allImages[randNum1].idText; //
-  var randomId2 = allImages[randNum2].idText; // access id attribute values for randomly selected images
-  var randomId3 = allImages[randNum3].idText; //
-
-  imgEl1.id = randomId1;
   imgEl1.src = allImages[randNum1].filePath;
   imgPara1.textContent = allImages[randNum1].name;
-
-  imgEl2.id = randomId2;
   imgEl2.src = allImages[randNum2].filePath;
   imgPara2.textContent = allImages[randNum2].name;
-
-  imgEl3.id = randomId3;
   imgEl3.src = allImages[randNum3].filePath;
   imgPara3.textContent = allImages[randNum3].name;
 
@@ -187,6 +176,16 @@ function image3Click() {
 imgEl1.addEventListener('click', image1Click);
 imgEl2.addEventListener('click', image2Click);
 imgEl3.addEventListener('click', image3Click);
+
+// function to implement local storage
+function storeData() {
+  var resultsObj = JSON.stringify(allImages);
+  localStorage.setItem('storedData', resultsObj);
+}
+// function to clear local storage
+function clearStorage() {
+  localStorage.clear();
+}
 
 // function to display message that voting process has ended and display results
 function alertEndMessage() {
