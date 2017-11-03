@@ -36,7 +36,7 @@ span {
   text-align: center;
 }
 #image-row {
-  
+
 }
 .image-div {
   width: auto;
@@ -88,11 +88,27 @@ span {
 
 .end-message {
   width: auto;
-  margin: 1% auto;
+  margin: 0 auto;
   text-align: center;
-  padding: 2%;
+  padding:;
   font-family: 'Saira Extra Condensed';
   font-size: 1.3em;
+}
+
+button {
+  padding: 1%;
+  background-color: Black;
+  color: #FFF;
+  text-align: center;
+  font-style: 'Roboto';
+}
+button:hover {
+  cursor: pointer;
+}
+.button {
+  width: auto;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .result-list {

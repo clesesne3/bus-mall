@@ -182,6 +182,16 @@ function storeData() {
   var resultsObj = JSON.stringify(allImages);
   localStorage.setItem('storedData', resultsObj);
 }
+
+// function to create button
+var buttonDivEl = document.getElementById('button-id');
+var buttonEl = document.createElement('button');
+var buttonText = document.createTextNode('Clear Results!');
+
+function showButton() {
+  buttonEl.appendChild(buttonText);
+  buttonDivEl.appendChild(buttonEl);
+}
 // function to clear local storage
 function clearStorage() {
   localStorage.clear();
@@ -193,8 +203,11 @@ function alertEndMessage() {
   var endMessage = document.createTextNode('Thank you for your input! Check out the results below:');
   endMessageEl.appendChild(endMessage);
   document.getElementById('end-message').appendChild(endMessageEl);
+  showButton();
   displayResultsChart();
+  storeData();
 }
+buttonEl.addEventListener('click', clearStorage);
 
 // calculates and displays remaining number of selections remaining
 function clicksRemaining() {
