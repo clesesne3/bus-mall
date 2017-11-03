@@ -183,7 +183,7 @@ function storeData() {
   localStorage.setItem('storedData', resultsObj);
 }
 
-// function to create button
+// function to create clear results button
 var buttonDivEl = document.getElementById('button-id');
 var buttonEl = document.createElement('button');
 var buttonText = document.createTextNode('Clear Results!');
@@ -223,29 +223,39 @@ function displayResultsChart () {
   var chartResults = document.getElementById('bar-chart').getContext('2d');
 
   var voteResultsArr = [];
-  var colorResultsArr = ['red', 'green', 'yellow', 'blue', 'orange', 'purple',
-    'cyan', 'magenta', 'lime', 'pink', 'teal', 'lavender', 'brown', 'beige', 'maroon', 'mint', 'olive', 'coral', 'navy', 'grey', 'white', 'black'];
+  var displayResultsArr = [];
   var nameResultsArr = [];
   for (var k = 0; k < allImages.length; k++) {
     if (allImages[k].numClicks > 0) {
       voteResultsArr.push(allImages[k].numClicks);
+      displayResultsArr.push(allImages[k].numDisplays);
       nameResultsArr.push(allImages[k].name);
     }
   }
   var data = {
     datasets: [{
       data: voteResultsArr,
-      backgroundColor: colorResultsArr,
+      backgroundColor: 'FireBrick',
+      hoverBackgroundColor: 'FireBrick',
       borderColor: '#000',
       borderWidth: 1,
       label: 'Votes'
-    }],
+    },
+    {
+      data: displayResultsArr,
+      backgroundColor: 'DarkOrange',
+      hoverBackgroundColor: 'DarkOrange',
+      borderColor: '#000',
+      borderWidth: 1,
+      label: 'Displays'}],
     labels: nameResultsArr
   };
 
   var options = {
     title: {display: true, text: 'Bus-Mall Survey: Product Preference by Vote Count', position: 'top', fontSize: 20, fontFamily: 'Roboto', fontColor: '#000', fontStyle: 'bold'},
-    legend: {display: false},
+    legend: {display: true, labels: {fontColor: '#000'}},
+    categoryPercentage: 1.0,
+    barPercentage: 1.0,
     scales: {
       xAxes: [{
         type: 'category',
