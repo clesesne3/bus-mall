@@ -187,7 +187,6 @@ function storeData() {
 var buttonDivEl = document.getElementById('button-id');
 var buttonEl = document.createElement('button');
 var buttonText = document.createTextNode('Clear Results!');
-
 function showButton() {
   buttonEl.appendChild(buttonText);
   buttonDivEl.appendChild(buttonEl);
@@ -197,7 +196,7 @@ function clearStorage() {
   localStorage.clear();
 }
 
-// function to display message that voting process has ended and display results
+// function to alert that survey ended and display results
 function alertEndMessage() {
   var endMessageEl = document.createElement('h3');
   var endMessage = document.createTextNode('Thank you for your input! Check out the results below:');
@@ -208,6 +207,9 @@ function alertEndMessage() {
   storeData();
 }
 buttonEl.addEventListener('click', clearStorage);
+buttonEl.addEventListener('click', function() {
+  document.getElementById('bar-chart').style.display = 'none';
+});
 
 // calculates and displays remaining number of selections remaining
 function clicksRemaining() {
@@ -216,7 +218,7 @@ function clicksRemaining() {
   clicksLeftEl.textContent = 'Selections remaining: ' + clicksLeft;
 }
 
-// function to display results with a chart
+// function to enter results into a chart
 function displayResultsChart () {
   var chartResults = document.getElementById('bar-chart').getContext('2d');
 
